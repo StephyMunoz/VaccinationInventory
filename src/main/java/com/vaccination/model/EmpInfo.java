@@ -34,7 +34,7 @@ public class EmpInfo {
 
 	@NotEmpty(message = "El campo número telefónico debe ser llenado")
 	@Column
-	@Pattern (regexp = "^(\\d{10})$", message = "El número telefónico debe contener 10 números")
+	@Pattern(regexp = "^(\\d{10})$", message = "El número telefónico debe contener 10 números")
 	private String phonenumber;
 
 	@NotNull(message = "El campo debe ser llenado")

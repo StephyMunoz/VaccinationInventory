@@ -26,7 +26,7 @@ public class AdminController {
 
 	@Autowired
 	private IAdminRepo repo;
-	
+
 	@Autowired
 	private IEmpInfoRepo inforepo;
 
@@ -67,51 +67,52 @@ public class AdminController {
 		repo.deleteById(id);
 		return null;
 	}
-	
+
 	@GetMapping(value = "/admin/filter/{vaccinated}")
-	public List<EmpInfo> filterByVaccinatedEmployees(@PathVariable("vaccinated") Boolean vaccinatedEmp){
+	public List<EmpInfo> filterByVaccinatedEmployees(@PathVariable("vaccinated") Boolean vaccinatedEmp) {
 		List<EmpInfo> list = inforepo.findAll();
 		List<EmpInfo> vaccinated = new ArrayList();
-		
-		for(EmpInfo emp : list) {
-			if(emp.isVaccinated() == vaccinatedEmp) {
+
+		for (EmpInfo emp : list) {
+			if (emp.isVaccinated() == vaccinatedEmp) {
 				vaccinated.add(emp);
 			}
 		}
-		
+
 		return vaccinated;
 	}
-	
+
 	@GetMapping(value = "/admin/kind/{vaccine}")
-	public List<EmpInfo> filterByNoVaccinatedEmployees(@PathVariable("vaccine") String vaccine){
-		
+	public List<EmpInfo> filterByNoVaccinatedEmployees(@PathVariable("vaccine") String vaccine) {
+
 //		if(!vaccine.toLowerCase().equals("sputnik") || !vaccine.toLowerCase().equals("astraZeneca") || !vaccine.toLowerCase().equals("pfizer") || !vaccine.toLowerCase().equals("jhonson&jhonson")) {
 //			return null;
 //		}
 		List<EmpInfo> list = inforepo.findAll();
 		List<EmpInfo> vaccinated = new ArrayList();
-		
-		for(EmpInfo emp : list) {
-			if(emp.getVaccine().toLowerCase().equals(vaccine)) {
+
+		for (EmpInfo emp : list) {
+			if (emp.getVaccine().toLowerCase().equals(vaccine)) {
 				vaccinated.add(emp);
 			}
 		}
-		
+
 		return vaccinated;
 	}
-	
+
 	@GetMapping(value = "/admin/date/{dateFrom}/{dateTo}")
-	public List<EmpInfo> filterByNoVaccinatedEmployees(@PathVariable("date") Date dateFrom, @PathVariable("date") Date dateTo){
-		
+	public List<EmpInfo> filterByNoVaccinatedEmployees(@PathVariable("date") Date dateFrom,
+			@PathVariable("date") Date dateTo) {
+
 		List<EmpInfo> list = inforepo.findAll();
 		List<EmpInfo> vaccinated = new ArrayList();
-		
-		for(EmpInfo emp : list) {
-			if(emp.getVaccinationDate().before(dateTo) && emp.getVaccinationDate().after(dateFrom)) {
+
+		for (EmpInfo emp : list) {
+			if (emp.getVaccinationDate().before(dateTo) && emp.getVaccinationDate().after(dateFrom)) {
 				vaccinated.add(emp);
 			}
 		}
-		
+
 		return vaccinated;
 	}
 }

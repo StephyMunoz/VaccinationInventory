@@ -28,18 +28,18 @@ public class Employee {
 	private int id;
 
 	@NotEmpty(message = "El campo cédula debe ser llenado")
-	@Pattern (regexp = "^(\\d{10})$", message = "La cédula debe contener 10 números")
+	@Pattern(regexp = "^(\\d{10})$", message = "La cédula debe contener 10 números")
 	@Column(length = 10)
 	private String idNumber;
 
 	@NotEmpty(message = "El campo nombre debe ser llenado")
 	@Column(length = 80)
-	@Pattern (regexp = "[A-Za-z]+", message = "El nombre no puede contener caracteres especiales")
+	@Pattern(regexp = "[A-Za-z]+", message = "El nombre no puede contener caracteres especiales")
 	private String name;
 
 	@NotEmpty(message = "El campo Apellido debe ser llenado")
 	@Column(length = 80)
-	@Pattern (regexp = "[A-Za-z]+", message = "El apellido no puede contener caracteres especiales")
+	@Pattern(regexp = "[A-Za-z]+", message = "El apellido no puede contener caracteres especiales")
 	private String lastname;
 
 	@NotEmpty(message = "El campo email debe ser llenado")
