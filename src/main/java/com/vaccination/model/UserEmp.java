@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import com.vaccination.Role;
 
@@ -21,19 +22,14 @@ import lombok.Setter;
 public class UserEmp {
 
 	@Id
-	@Getter
-	@Setter
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Getter
-	@Setter
 	@Column(length = 40)
 	private String username;
 
 	@Column
-	@Getter
-	@Setter
+	@Min(value = 6, message = "La contraseña debe contener al menos 6 caracteres")
 	private String password;
 
 	@OneToOne

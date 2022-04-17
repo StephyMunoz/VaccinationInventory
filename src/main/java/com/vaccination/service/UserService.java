@@ -33,7 +33,7 @@ public class UserService implements UserDetailsService {
 		UserEmp userEmp = repo.findByUsername(username);
 
 		List<GrantedAuthority> roles = new ArrayList<>();
-		roles.add(new SimpleGrantedAuthority("ROLE_USER"));
+		roles.add(new SimpleGrantedAuthority(userEmp.getRole().toString()));
 
 		UserDetails userDet = new User(userEmp.getUsername(), userEmp.getPassword(), roles);
 

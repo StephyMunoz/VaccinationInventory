@@ -75,8 +75,10 @@ public class UserController {
 		}
 		UserDetails userDetails = userService.loadUserByUsername(userEmp.getUsername());
 		String token = jwtService.createToken(userDetails);
+		UserEmp userAutenticated = rep.findByUsername(userEmp.getUsername());
 		AuthenticationResponse auth = new AuthenticationResponse();
 		auth.setToken(token);
+		auth.setUser(userAutenticated);
 		return auth;
 	}
 

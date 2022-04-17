@@ -1,5 +1,7 @@
 package com.vaccination;
 
+import java.util.Arrays;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.vaccination.service.UserService;
 
@@ -64,9 +69,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/api/auth").permitAll().antMatchers("/api/admin/*")
-				.hasAuthority("ROLE_ADMIN").antMatchers("/api/credentials/*").hasAuthority("ROLE_ADMIN")
-				.antMatchers("/api/information/*").hasAuthority("ROLE_USER").antMatchers("/api/update/*")
-				.hasAuthority("ROLE_USER").anyRequest().authenticated();
+		http.cors().and().csrf().disable().httpBasic().and().authorizeRequests().antMatchers("/api/auth").permitAll()
+				.antMatchers("/api/admin/*").hasAuthority("ROLE_ADMIN").antMatchers("/api/credentials/*")
+				.hasAuthority("ROLE_ADMIN").antMatchers("/api/information/*").hasAuthority("ROLE_USER")
+				.antMatchers("/api/update/*").hasAuthority("ROLE_USER").anyRequest().authenticated();
 	}
+
 }
