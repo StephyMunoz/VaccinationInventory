@@ -65,7 +65,7 @@ public class UserController {
 	}
 
 	@PostMapping("/auth")
-	public String createToken(@RequestBody UserEmp userEmp) throws Exception {
+	public AuthenticationResponse createToken(@RequestBody UserEmp userEmp) throws Exception {
 		try {
 			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
 					userEmp.getUsername(), userEmp.getPassword());
@@ -77,7 +77,7 @@ public class UserController {
 		String token = jwtService.createToken(userDetails);
 		AuthenticationResponse auth = new AuthenticationResponse();
 		auth.setToken(token);
-		return "Bearer" + auth;
+		return auth;
 	}
 
 }

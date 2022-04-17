@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "emp_information")
@@ -33,6 +34,7 @@ public class EmpInfo {
 
 	@NotEmpty(message = "El campo número telefónico debe ser llenado")
 	@Column
+	@Pattern (regexp = "^(\\d{10})$", message = "El número telefónico debe contener 10 números")
 	private String phonenumber;
 
 	@NotNull(message = "El campo debe ser llenado")

@@ -41,6 +41,10 @@ public class EmpInfoController {
 	public EmpInfo saveInformation(@RequestBody EmpInfo empInfo, @PathVariable("id") Integer id) {
 
 		Employee emp = employeeService.getById(id);
+		
+		if(emp == null) {
+			return null;
+		}
 
 		empInfo.setAddress(empInfo.getAddress());
 		empInfo.setDateOfBirth(empInfo.getDateOfBirth());

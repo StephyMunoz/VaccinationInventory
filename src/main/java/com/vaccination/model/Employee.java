@@ -9,6 +9,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,23 +28,18 @@ public class Employee {
 	private int id;
 
 	@NotEmpty(message = "El campo cédula debe ser llenado")
-	// @Pattern (regexp = "^[0-9]{2}[0-9]{10}$", message = "La cédula debe contener
-	// 10 números")
+	@Pattern (regexp = "^(\\d{10})$", message = "La cédula debe contener 10 números")
 	@Column(length = 10)
-	@Getter
-	@Setter
 	private String idNumber;
 
 	@NotEmpty(message = "El campo nombre debe ser llenado")
 	@Column(length = 80)
-	@Getter
-	@Setter
+	@Pattern (regexp = "[A-Za-z]+", message = "El nombre no puede contener caracteres especiales")
 	private String name;
 
 	@NotEmpty(message = "El campo Apellido debe ser llenado")
 	@Column(length = 80)
-	@Getter
-	@Setter
+	@Pattern (regexp = "[A-Za-z]+", message = "El apellido no puede contener caracteres especiales")
 	private String lastname;
 
 	@NotEmpty(message = "El campo email debe ser llenado")
